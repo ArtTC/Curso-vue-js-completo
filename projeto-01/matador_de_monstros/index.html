@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+    <div class="card">
+        <div class="personagem">
+            <h1>Jogador</h1>
+            <div class="progress-bar">
+                <div :style="{width: `${widthJogador}%`, backgroundColor: bar_color_jogador}"></div>
+            </div>
+            <label>{{ widthJogador }}%</label>
+        </div>
+        <div class="personagem">
+            <h1>Monstro</h1>
+            <div class="progress-bar">
+                <div :style="{width: `${widthMonstro}%`, backgroundColor: bar_color_monstro}"></div>
+            </div>
+            <label>{{ widthMonstro }}%</label>
+        </div>
+    </div>
+    <div class="card" v-show="end.msg">
+        <label :style="{color: end.color}">{{ end.msg }}</label>
+    </div>
+    <div class="card">
+        <button v-if="!jogo_on" @click="comecar()">Começar</button>
+        <template v-else>
+            <button @click="ataque(0)">Ataque</button>
+            <button @click="ataque(1)">Ataque Especial</button>
+            <button @click="curar">Curar</button>
+            <button @click="reset">Desistir</button>
+        </template>
+    </div>
+    <div class="card">
+        <div class="logJogo">
+            <div v-for="value in logBatalha" :class="value.color">
+                {{ value.msg }}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
