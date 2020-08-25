@@ -16,6 +16,17 @@
 
 export default {
     props: ['id'],
+    beforeRouteEnter(to, from, next) {
+        // Nesse momento não existe 'this'.
+        // console.log(this.id)
+        console.log('dentro de detalhe - next')
+        next(vm => {
+            console.log(vm.id)
+        })
+        const autenticado = true
+        // O next permite o acesso a rota.
+        autenticado ? next() : next(false)
+    }
     // data() {
     //     return {
     //         id: this.$route.params.id
